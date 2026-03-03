@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
@@ -155,8 +154,11 @@
         .header-logo {
             height: 30px;
             width: auto;
-            color: var(--text-primary);
-            transition: color 0.3s;
+        }
+        .header-logo text,
+        .header-logo rect {
+            fill: var(--text-primary);
+            transition: fill 0.3s;
         }
 
         /* THEME TOGGLE */
