@@ -1,296 +1,467 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coder AI Workshop Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            /* Brand colors */
+            --white: #ffffff;
+            --black: #090B0B;
+            --magenta: #F08DFF;
+            --purple: #BC7CFF;
+            --ember: #FF8067;
+            --orchid: #9900B1;
+            --violet: #7511E2;
+            --sunset: #A13000;
+            --haze: #A19CC8;
+            --glacier: #B8D7F5;
+            --sky: #A4E8F2;
+            --twilight: #4A408F;
+            --marine: #1D4D7D;
+            --jade: #005C6A;
+            --shell: #F8F2F1;
+            --linen: #FBF8F8;
+            --cinder: #18171A;
+            --smoke: #2F2D33;
         }
 
+        /* DARK THEME (default — developer focus) */
+        [data-theme="dark"] {
+            --bg-page: var(--black);
+            --bg-container: var(--cinder);
+            --bg-header: linear-gradient(135deg, var(--cinder) 0%, var(--smoke) 100%);
+            --bg-surface: var(--black);
+            --bg-code: var(--smoke);
+            --border-main: var(--smoke);
+            --border-accent: var(--purple);
+            --text-primary: var(--shell);
+            --text-body: #d4d0d0;
+            --text-muted: var(--haze);
+            --heading-primary: var(--purple);
+            --heading-secondary: var(--magenta);
+            --heading-tertiary: var(--glacier);
+            --link-color: var(--purple);
+            --link-hover: var(--magenta);
+            --btn-bg: var(--violet);
+            --btn-hover: var(--orchid);
+            --btn-copied-bg: var(--jade);
+            --btn-copied-text: var(--sky);
+            --table-header-bg: var(--violet);
+            --table-cell-bg: var(--black);
+            --info-bg: rgba(29,77,125,0.15);
+            --info-border: var(--marine);
+            --info-text: var(--glacier);
+            --success-bg: rgba(0,92,106,0.15);
+            --success-border: var(--sky);
+            --success-text: var(--sky);
+            --warning-bg: rgba(161,48,0,0.15);
+            --warning-border: var(--ember);
+            --warning-text: var(--ember);
+            --badge-beginner-bg: var(--jade);
+            --badge-beginner-text: var(--sky);
+            --badge-intermediate-bg: var(--sunset);
+            --badge-intermediate-text: var(--ember);
+            --badge-advanced-bg: var(--twilight);
+            --badge-advanced-text: var(--purple);
+            --toggle-bg: var(--smoke);
+            --toggle-knob: var(--purple);
+        }
+
+        /* LIGHT THEME (enterprise focus) */
+        [data-theme="light"] {
+            --bg-page: var(--shell);
+            --bg-container: var(--white);
+            --bg-header: linear-gradient(135deg, var(--white) 0%, var(--shell) 100%);
+            --bg-surface: var(--shell);
+            --bg-code: var(--cinder);
+            --border-main: #ddd;
+            --border-accent: var(--marine);
+            --text-primary: var(--black);
+            --text-body: var(--smoke);
+            --text-muted: #666;
+            --heading-primary: var(--marine);
+            --heading-secondary: var(--violet);
+            --heading-tertiary: var(--marine);
+            --link-color: var(--marine);
+            --link-hover: var(--violet);
+            --btn-bg: var(--marine);
+            --btn-hover: var(--jade);
+            --btn-copied-bg: var(--jade);
+            --btn-copied-text: var(--white);
+            --table-header-bg: var(--marine);
+            --table-cell-bg: var(--white);
+            --info-bg: rgba(29,77,125,0.08);
+            --info-border: var(--marine);
+            --info-text: var(--marine);
+            --success-bg: rgba(0,92,106,0.08);
+            --success-border: var(--jade);
+            --success-text: var(--jade);
+            --warning-bg: rgba(161,48,0,0.08);
+            --warning-border: var(--ember);
+            --warning-text: var(--sunset);
+            --badge-beginner-bg: #e0f5f0;
+            --badge-beginner-text: var(--jade);
+            --badge-intermediate-bg: #fff0ed;
+            --badge-intermediate-text: var(--sunset);
+            --badge-advanced-bg: #f0e8ff;
+            --badge-advanced-text: var(--violet);
+            --toggle-bg: #ddd;
+            --toggle-knob: var(--marine);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
-            color: #090B0B;
-            background: #F8F2F1;
+            color: var(--text-primary);
+            background: var(--bg-page);
             padding: 20px;
+            transition: background 0.3s, color 0.3s;
         }
 
         .container {
             max-width: 1000px;
             margin: 0 auto;
-            background: #ffffff;
+            background: var(--bg-container);
             border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(9,11,11,0.1);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
             overflow: hidden;
-            border: 1px solid #2F2D33;
+            border: 1px solid var(--border-main);
+            transition: background 0.3s, border-color 0.3s;
         }
 
+        /* HEADER */
         .header {
-            background: #ffffff;
-            color: #090B0B;
-            padding: 40px 30px;
+            background: var(--bg-header);
+            padding: 48px 30px 40px;
             text-align: center;
-            border-bottom: 4px solid #1D4D7D;
+            border-bottom: 3px solid var(--border-accent);
+            position: relative;
+        }
+
+        .header-top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
         }
 
         .header-logo {
-            max-width: 250px;
-            height: auto;
-            margin-bottom: 20px;
-            width:172.8px;
-            height:25.92px;
+            height: 30px;
+            width: auto;
+            color: var(--text-primary);
+            transition: color 0.3s;
+        }
+
+        /* THEME TOGGLE */
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .theme-toggle-label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.75em;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .toggle-track {
+            width: 44px;
+            height: 24px;
+            background: var(--toggle-bg);
+            border-radius: 12px;
+            position: relative;
+            transition: background 0.3s;
+        }
+
+        .toggle-knob {
+            width: 18px;
+            height: 18px;
+            background: var(--toggle-knob);
+            border-radius: 50%;
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        [data-theme="light"] .toggle-knob { transform: translateX(20px); }
+
+        .toggle-icon {
+            font-size: 14px;
+            line-height: 1;
         }
 
         .header h1 {
             font-size: 2.5em;
-            margin-bottom: 10px;
-            color: #090B0B;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+            font-weight: 800;
+            letter-spacing: -0.02em;
         }
 
         .header p {
             font-size: 1.1em;
-            color: #2F2D33;
+            color: var(--text-muted);
+            font-weight: 500;
         }
 
-        .content {
-            padding: 40px 30px;
-            color: #090B0B;
-        }
+        /* CONTENT */
+        .content { padding: 40px 30px; }
 
         h2 {
-            color: #1D4D7D;
-            margin-top: 40px;
+            color: var(--heading-primary);
+            margin-top: 48px;
             margin-bottom: 20px;
             font-size: 1.8em;
-            border-bottom: 3px solid #1D4D7D;
-            padding-bottom: 10px;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            border-bottom: 2px solid var(--border-main);
+            padding-bottom: 12px;
         }
 
         h3 {
-            color: #1D4D7D;
+            color: var(--heading-secondary);
             margin-top: 30px;
             margin-bottom: 15px;
-            font-size: 1.4em;
+            font-size: 1.3em;
+            font-weight: 600;
         }
 
         h4 {
-            color: #090B0B;
+            color: var(--heading-tertiary);
             margin-top: 20px;
             margin-bottom: 10px;
-            font-size: 1.1em;
+            font-size: 1.05em;
+            font-weight: 600;
         }
 
-        p, li {
-            margin-bottom: 10px;
-            color: #2F2D33;
-        }
+        p, li { margin-bottom: 10px; color: var(--text-body); }
+        strong { color: var(--text-primary); }
+        em { color: var(--text-muted); }
+        ul, ol { margin-left: 30px; margin-bottom: 20px; }
 
-        ul, ol {
-            margin-left: 30px;
-            margin-bottom: 20px;
-        }
-
+        /* PROMPT BOXES */
         .prompt-box {
-            background: #F8F2F1;
-            border-left: 4px solid #1D4D7D;
+            background: var(--bg-surface);
+            border-left: 3px solid var(--border-accent);
             padding: 20px;
             margin: 20px 0;
-            border-radius: 6px;
+            border-radius: 8px;
             position: relative;
         }
 
         .prompt-box pre {
-            background: #18171A;
-            color: #F8F2F1;
-            padding: 15px;
+            font-family: 'IBM Plex Mono', 'Courier New', monospace;
+            background: var(--bg-code);
+            color: var(--shell);
+            padding: 16px;
             border-radius: 6px;
             overflow-x: auto;
-            font-size: 0.9em;
+            font-size: 0.88em;
             margin-top: 10px;
-            border: 1px solid #2F2D33;
+            border: 1px solid var(--border-main);
+            white-space: pre-wrap;
+            line-height: 1.5;
         }
 
         .copy-btn {
             position: absolute;
             top: 10px;
             right: 10px;
-            background: #1D4D7D;
-            color: #ffffff;
+            background: var(--btn-bg);
+            color: #fff;
             border: none;
-            padding: 8px 16px;
+            padding: 6px 14px;
             border-radius: 6px;
             cursor: pointer;
-            font-size: 0.85em;
-            transition: background 0.3s;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.8em;
             font-weight: 600;
+            transition: background 0.2s;
         }
 
-        .copy-btn:hover {
-            background: #005C6A;
-        }
+        .copy-btn:hover { background: var(--btn-hover); }
+        .copy-btn.copied { background: var(--btn-copied-bg); color: var(--btn-copied-text); }
 
-        .copy-btn.copied {
-            background: #48bb78;
-            color: #ffffff;
-        }
-
+        /* CALLOUT BOXES */
         .info-box {
-            background: #F8F2F1;
-            border-left: 4px solid #1D4D7D;
-            padding: 15px;
+            background: var(--info-bg);
+            border-left: 3px solid var(--info-border);
+            padding: 16px 20px;
             margin: 20px 0;
-            border-radius: 6px;
-            color: #2F2D33;
+            border-radius: 8px;
+            color: var(--info-text);
         }
-
-        .warning-box {
-            background: #F8F2F1;
-            border-left: 4px solid #FF8067;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 6px;
-            color: #2F2D33;
-        }
+        .info-box strong, .info-box li { color: var(--info-text); }
 
         .success-box {
-            background: #F8F2F1;
-            border-left: 4px solid #48bb78;
-            padding: 15px;
+            background: var(--success-bg);
+            border-left: 3px solid var(--success-border);
+            padding: 16px 20px;
             margin: 20px 0;
-            border-radius: 6px;
-            color: #2F2D33;
+            border-radius: 8px;
+            color: var(--success-text);
         }
+        .success-box li { color: var(--success-text); }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
+        .warning-box {
+            background: var(--warning-bg);
+            border-left: 3px solid var(--warning-border);
+            padding: 16px 20px;
             margin: 20px 0;
+            border-radius: 8px;
+            color: var(--warning-text);
         }
 
-        th, td {
-            border: 1px solid #2F2D33;
-            padding: 12px;
-            text-align: left;
-            color: #090B0B;
-        }
+        /* TABLES */
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { border: 1px solid var(--border-main); padding: 12px 16px; text-align: left; color: var(--text-body); }
+        th { background: var(--table-header-bg); color: #fff; font-weight: 600; font-size: 0.95em; }
+        td { background: var(--table-cell-bg); }
 
-        th {
-            background: #1D4D7D;
-            color: #ffffff;
-            font-weight: 600;
-        }
-
+        /* BADGES */
         .difficulty-badge {
             display: inline-block;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 0.85em;
-            font-weight: bold;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.82em;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
         }
+        .beginner { background: var(--badge-beginner-bg); color: var(--badge-beginner-text); }
+        .intermediate { background: var(--badge-intermediate-bg); color: var(--badge-intermediate-text); }
+        .advanced { background: var(--badge-advanced-bg); color: var(--badge-advanced-text); }
 
-        .beginner {
-            background: #48bb78;
-            color: #ffffff;
-        }
+        /* CHECKLISTS */
+        .checklist { list-style: none; margin-left: 0; }
+        .checklist li { padding: 6px 0 6px 32px; position: relative; color: var(--text-body); }
+        .checklist li:before { content: "\2610"; position: absolute; left: 0; font-size: 1.2em; color: var(--heading-primary); }
 
-        .intermediate {
-            background: #FF8067;
-            color: #ffffff;
-        }
+        /* LINKS */
+        a { color: var(--link-color); text-decoration: none; font-weight: 500; transition: color 0.2s; }
+        a:hover { text-decoration: underline; color: var(--link-hover); }
 
-        .advanced {
-            background: #1D4D7D;
-            color: #ffffff;
-        }
-
-        .checklist {
-            list-style: none;
-            margin-left: 0;
-        }
-
-        .checklist li {
-            padding-left: 30px;
-            position: relative;
-            color: #2F2D33;
-        }
-
-        .checklist li:before {
-            content: "☐";
-            position: absolute;
-            left: 0;
-            font-size: 1.2em;
-            color: #1D4D7D;
-        }
-
-        a {
-            color: #1D4D7D;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        a:hover {
-            text-decoration: underline;
-            color: #005C6A;
-        }
-
+        /* TOC */
         .nav-toc {
-            background: #F8F2F1;
-            padding: 20px;
+            background: var(--bg-surface);
+            padding: 24px;
             border-radius: 8px;
             margin-bottom: 30px;
-            border: 2px solid #1D4D7D;
+            border: 1px solid var(--border-main);
+        }
+        .nav-toc h3 { margin-top: 0; color: var(--heading-primary); font-size: 1.1em; }
+        .nav-toc ul { margin-left: 20px; columns: 2; }
+        .nav-toc li { color: var(--text-muted); break-inside: avoid; }
+        .nav-toc a { color: var(--text-muted); font-size: 0.95em; }
+        .nav-toc a:hover { color: var(--link-hover); }
+
+        /* METHOD TABS */
+        .method-tabs { display: flex; gap: 0; margin: 24px 0 0 0; border-bottom: 2px solid var(--border-main); }
+        .method-tab {
+            padding: 12px 24px;
+            background: transparent;
+            color: var(--text-muted);
+            border: none;
+            cursor: pointer;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.9em;
+            font-weight: 600;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
+            transition: all 0.2s;
+        }
+        .method-tab:hover { color: var(--link-hover); }
+        .method-tab.active { color: var(--heading-primary); border-bottom-color: var(--heading-primary); }
+
+        .method-content { display: none; padding: 24px 0 0 0; }
+        .method-content.active { display: block; }
+
+        .method-label {
+            display: inline-block;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.75em;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 4px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        .label-a { background: rgba(117,17,226,0.15); color: var(--heading-primary); }
+        .label-b { background: rgba(240,141,255,0.12); color: var(--heading-secondary); }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: var(--btn-bg);
+            color: #fff;
+            border-radius: 50%;
+            font-size: 0.85em;
+            font-weight: 700;
+            margin-right: 8px;
+            flex-shrink: 0;
         }
 
-        .nav-toc h3 {
-            margin-top: 0;
-            color: #1D4D7D;
+        .footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid var(--border-main);
+            margin-top: 48px;
         }
-
-        .nav-toc ul {
-            margin-left: 20px;
-        }
-
-        .nav-toc a {
-            color: #2F2D33;
-        }
-
-        .nav-toc a:hover {
-            color: #1D4D7D;
-        }
+        .footer h3 { color: var(--text-primary); margin-bottom: 8px; }
+        .footer p { font-size: 1em; color: var(--text-muted); }
 
         @media (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
-
-            .header h1 {
-                font-size: 1.8em;
-            }
-
-            .content {
-                padding: 20px 15px;
-            }
-
-            h2 {
-                font-size: 1.5em;
-            }
+            body { padding: 10px; }
+            .header h1 { font-size: 1.8em; }
+            .content { padding: 20px 15px; }
+            h2 { font-size: 1.4em; }
+            .nav-toc ul { columns: 1; }
+            .method-tab { padding: 10px 14px; font-size: 0.82em; }
+            .header-top-bar { flex-direction: column; gap: 16px; }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <img src="https://raw.githubusercontent.com/dahr/coder-ai-workshop-guide/50ee40682f6b3f76649159154aff17b2f3bf724e/Logo-black.png" alt="Coder" class="header-logo">
+            <div class="header-top-bar">
+                <!-- Official Coder logo SVG from brand guide (coder.com/brand) -->
+                <img src="https://coder.com/brand/images/logo.svg" alt="Coder" class="header-logo">
+
+                <div class="theme-toggle" onclick="toggleTheme()">
+                    <span class="toggle-icon">&#9790;</span>
+                    <div class="toggle-track">
+                        <div class="toggle-knob"></div>
+                    </div>
+                    <span class="toggle-icon">&#9788;</span>
+                </div>
+            </div>
+
             <h1>AI Workshop Guide</h1>
             <p>Enterprise-Ready AI-Assisted Development with Secure Boundaries</p>
         </div>
 
         <div class="content">
             <div class="nav-toc">
-                <h3>📋 Table of Contents</h3>
+                <h3>Table of Contents</h3>
                 <ul>
                     <li><a href="#overview">Workshop Overview</a></li>
                     <li><a href="#prerequisites">Prerequisites</a></li>
@@ -307,6 +478,7 @@
 
             <section id="overview">
                 <h2>Workshop Overview</h2>
+                <p>Build fast. Stay secure. Ship with confidence.</p>
                 <p>Participants will use Coder's workspace agents, configured with boundary controls, to collaboratively solve GitHub issues on a React memory card game. This workshop demonstrates enterprise-ready AI-assisted workflows within secure, auditable environments.</p>
             </section>
 
@@ -314,61 +486,132 @@
                 <h2>Prerequisites</h2>
                 <ul>
                     <li>GitHub Account</li>
-                    <li>Workshop Guide</li>
-                    <li>Workshop repository: <a href="https://github.com/coder-contrib/memory-card-ai-demo" target="_blank">https://github.com/coder-contrib/memory-card-ai-demo</a> (1st browser tab)</li>
-                    <li>Coder: <a href="https://ai.coder.com" target="_blank">https://ai.coder.com</a> (2nd browser tab)</li>
+                    <li>This Workshop Guide</li>
+                    <li>Workshop repository: <a href="https://github.com/coder-contrib/memory-card-ai-demo" target="_blank">github.com/coder-contrib/memory-card-ai-demo</a> (1st browser tab)</li>
+                    <li>Coder: <a href="https://ai.coder.com" target="_blank">ai.coder.com</a> (2nd browser tab)</li>
                 </ul>
             </section>
 
             <section id="part1">
                 <h2>Part 1: Workspace Launch (5 minutes)</h2>
+                <p>Two ways to spin up your workspace. Pick whichever fits your workflow.</p>
 
-                <h3>Step 1: Access Coder</h3>
-                <ol>
-                    <li>Navigate to <a href="https://ai.coder.com" target="_blank">https://ai.coder.com</a></li>
-                    <li>Log in with your GitHub account</li>
-                </ol>
-
-                <h3>Step 2: Launch Workshop Workspace</h3>
-                <ol>
-                    <li>Click "Tasks" in the Coder dashboard</li>
-                    <li>Select "Memory Game App" from the template dropdown</li>
-                    <li>In the "Prompt your AI agent to start a task…" box, type:</li>
-                </ol>
-
-                <div class="prompt-box">
-                    <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
-                    <pre>Start workspace and list issues in the repository by issue number. Analyze each issue thoroughly and await for further prompts.</pre>
+                <div class="method-tabs">
+                    <button class="method-tab active" onclick="switchMethod('a', this)">Method A: Coder Dashboard</button>
+                    <button class="method-tab" onclick="switchMethod('b', this)">Method B: GitHub Issue</button>
                 </div>
 
-                <ul>
-                    <li>Click the "up" arrow on the bottom right</li>
-                    <li>Below the prompt window, you will see a task initializing. Hover over the task and click to get into the workspace</li>
-                    <li>Wait for automatic provisioning (~2 minutes). The screen will be briefly blank as the workspace starts up</li>
-                </ul>
+                <!-- METHOD A -->
+                <div id="method-a" class="method-content active">
+                    <span class="method-label label-a">Method A</span>
+                    <h3>Launch from the Coder Dashboard</h3>
 
-                <div class="info-box">
-                    <strong>What's happening automatically:</strong>
-                    <ul style="margin-top: 10px;">
-                        <li>Repository is cloned</li>
-                        <li>Dependencies are installed</li>
-                        <li>Development server starts</li>
-                        <li>Issues are loaded into the AI's memory</li>
-                        <li>Agent boundaries are automatically configured</li>
+                    <h4><span class="step-number">1</span> Access Coder</h4>
+                    <ol>
+                        <li>Navigate to <a href="https://ai.coder.com" target="_blank">ai.coder.com</a></li>
+                        <li>Log in with your GitHub account</li>
+                    </ol>
+
+                    <h4><span class="step-number">2</span> Launch Workshop Workspace</h4>
+                    <ol>
+                        <li>Click <strong>"Tasks"</strong> in the Coder dashboard</li>
+                        <li>Select <strong>"Memory Game App"</strong> from the template dropdown</li>
+                        <li>In the "Prompt your AI agent to start a task…" box, type:</li>
+                    </ol>
+
+                    <div class="prompt-box">
+                        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+                        <pre>Start workspace and list issues in the repository by issue number. Analyze each issue thoroughly and await for further prompts.</pre>
+                    </div>
+
+                    <ul>
+                        <li>Click the <strong>"up" arrow</strong> on the bottom right</li>
+                        <li>Below the prompt window, a task will initialize — hover over it and click to enter the workspace</li>
+                        <li>Wait for automatic provisioning (~2 minutes). The screen will be briefly blank as the workspace starts up</li>
                     </ul>
+
+                    <div class="info-box">
+                        <strong>What's happening automatically:</strong>
+                        <ul style="margin-top: 10px;">
+                            <li>Repository is cloned</li>
+                            <li>Dependencies are installed</li>
+                            <li>Development server starts</li>
+                            <li>Issues are loaded into the AI's memory</li>
+                            <li>Agent boundaries are automatically configured</li>
+                        </ul>
+                    </div>
+
+                    <h4><span class="step-number">3</span> Access Your Workspace</h4>
+                    <div class="success-box">
+                        <p>Once provisioned, you'll see:</p>
+                        <ul style="margin-top: 10px;">
+                            <li>IDE/Editor ready</li>
+                            <li>Terminal access</li>
+                            <li>App running at a provided URL</li>
+                            <li>AI assistant with issues pre-loaded</li>
+                        </ul>
+                    </div>
+                    <p>Select the <strong>"Preview App"</strong> tab to view and start playing the Memory Card Game.</p>
                 </div>
 
-                <h3>Step 3: Access Your Workspace</h3>
-                <div class="success-box">
-                    <p>Once provisioned, you'll see:</p>
-                    <ul style="margin-top: 10px;">
-                        <li>✅ IDE/Editor ready</li>
-                        <li>✅ Terminal access</li>
-                        <li>✅ App running at a provided URL</li>
-                        <li>✅ AI assistant with issues pre-loaded</li>
-                    </ul>
+                <!-- METHOD B -->
+                <div id="method-b" class="method-content">
+                    <span class="method-label label-b">Method B</span>
+                    <h3>Launch from a GitHub Issue</h3>
+                    <p>Trigger a workspace directly from the repository — no dashboard required.</p>
+
+                    <h4><span class="step-number">1</span> Open the Workshop Repository</h4>
+                    <ol>
+                        <li>Navigate to <a href="https://github.com/coder-contrib/memory-card-ai-demo" target="_blank">github.com/coder-contrib/memory-card-ai-demo</a></li>
+                        <li>Click the <strong>"Issues"</strong> tab to see the list of open issues</li>
+                    </ol>
+
+                    <div class="info-box">
+                        <strong>Available issues:</strong>
+                        <ul style="margin-top: 10px;">
+                            <li><strong>#980</strong> — Add a countdown timer</li>
+                            <li><strong>#979</strong> — Create theme selector</li>
+                            <li><strong>#978</strong> — Implement high score persistence</li>
+                            <li><strong>#977</strong> — Add an option to choose difficulty levels (4x4, 6x6, 8x8 grids)</li>
+                            <li><strong>#976</strong> — Change card back design</li>
+                        </ul>
+                    </div>
+
+                    <h4><span class="step-number">2</span> Select an Issue</h4>
+                    <p>Click on any issue to open it. Pick one that matches your comfort level — <strong>#976</strong> is a great starting point.</p>
+
+                    <h4><span class="step-number">3</span> Trigger the Agent</h4>
+                    <p>Scroll to the comment box at the bottom of the issue and type:</p>
+
+                    <div class="prompt-box">
+                        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+                        <pre>@coder-contrib-bot</pre>
+                    </div>
+
+                    <p>Submit the comment. This triggers a GitHub Action that automatically:</p>
+                    <div class="info-box">
+                        <ul style="margin-top: 0;">
+                            <li>Provisions a Coder workspace for the issue</li>
+                            <li>Clones the repository and installs dependencies</li>
+                            <li>Starts the development server</li>
+                            <li>Configures the AI agent with the issue context and boundaries</li>
+                            <li>Creates a feature branch for your work</li>
+                        </ul>
+                    </div>
+
+                    <h4><span class="step-number">4</span> Access Your Workspace</h4>
+                    <p>The bot will reply to the issue with a direct link to your provisioned workspace. Click the link to jump straight in.</p>
+                    <div class="success-box">
+                        <p>Once provisioned, you'll see:</p>
+                        <ul style="margin-top: 10px;">
+                            <li>IDE/Editor ready</li>
+                            <li>Terminal access</li>
+                            <li>App running at a provided URL</li>
+                            <li>AI assistant with the selected issue pre-loaded</li>
+                        </ul>
+                    </div>
+                    <p>Select the <strong>"Preview App"</strong> tab to view and start playing the Memory Card Game.</p>
                 </div>
-                <p>Select the "Preview App" tab to view and start playing the Memory Card Game.</p>
             </section>
 
             <section id="part2">
@@ -386,17 +629,16 @@
                     <li><strong>Check AI Assistant:</strong>
                         <ul>
                             <li>Open the AI chat panel</li>
-                            <li>Verify you see the 6 available issues listed</li>
+                            <li>Verify you see the available issues listed</li>
                         </ul>
                     </li>
-                    <li><strong>Review Available Issues:</strong> The AI assistant should display:
+                    <li><strong>Review Available Issues:</strong>
                         <ul>
-                            <li>Issue #1: Change card back design (Easy)</li>
-                            <li>Issue #2: Add difficulty levels</li>
-                            <li>Issue #3: Implement high score persistence</li>
-                            <li>Issue #4: Create theme selector</li>
-                            <li>Issue #5: Add countdown timer</li>
-                            <li>Issue #6: Add full difficulty system</li>
+                            <li>Issue #976: Change card back design <span class="difficulty-badge beginner">Easy</span></li>
+                            <li>Issue #977: Add difficulty levels (4x4, 6x6, 8x8 grids)</li>
+                            <li>Issue #978: Implement high score persistence</li>
+                            <li>Issue #979: Create theme selector</li>
+                            <li>Issue #980: Add countdown timer</li>
                         </ul>
                     </li>
                 </ol>
@@ -434,7 +676,7 @@
                 <h3>AI Assistant Prompts for Development</h3>
 
                 <h4>Prompt 1: Select and start an issue</h4>
-                <p><em>Best practice: solve one issue at a time</em></p>
+                <p><em>Best practice: solve one issue at a time.</em></p>
 
                 <div class="prompt-box">
                     <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
@@ -445,14 +687,14 @@
 4. Start implementing the solution</pre>
                 </div>
 
-                <p><strong>Example for Beginners (Issue #1):</strong></p>
+                <p><strong>Example for Beginners (Issue #976):</strong></p>
                 <div class="prompt-box">
                     <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
-                    <pre>I want to work on Issue #1 to add a red diamond to card backs. Please:
-1. Review the card rendering in App.jsx
-2. Create branch: coder-contrib/issue-1-card-back-diamond
-3. Modify the card back display to show a red diamond emoji or SVG
-4. Ensure it only shows when cards are face down</pre>
+                    <pre>I want to work on Issue #976 to add a red diamond to card backs. Please:
+- Review the card rendering in App.jsx
+- Create branch: coder-contrib/issue-976-card-back-diamond
+- Modify the card back display to show a red diamond emoji or SVG
+- Ensure it only shows when cards are face down</pre>
                 </div>
 
                 <h4>Prompt 2: Implement with Testing</h4>
@@ -460,22 +702,22 @@
                 <div class="prompt-box">
                     <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
                     <pre>For Issue #[NUMBER], please:
-1. Complete the implementation based on acceptance criteria
-2. Test each requirement locally
-3. Ensure the game still functions properly
-4. Show me the key changes you made</pre>
+- Complete the implementation based on acceptance criteria
+- Test each requirement locally
+- Ensure the game still functions properly
+- Show me the key changes you made</pre>
                 </div>
 
-                <p><strong>Example for Intermediate (Issue #5):</strong></p>
+                <p><strong>Example for Intermediate (Issue #980):</strong></p>
                 <div class="prompt-box">
                     <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
-                    <pre>For Issue #5 (countdown timer), please:
-1. Add a 60-second countdown timer that displays prominently
-2. Implement lose condition when timer reaches zero
-3. Show "Time's Up!" message on timeout
-4. Return to start screen after timeout
-5. Ensure timer pauses on win and resets on game reset
-6. Test all scenarios</pre>
+                    <pre>For Issue #980 (countdown timer), please:
+- Add a 60-second countdown timer that displays prominently
+- Implement lose condition when timer reaches zero
+- Show "Time's Up!" message on timeout
+- Return to start screen after timeout
+- Ensure timer pauses on win and resets on game reset
+- Test all scenarios</pre>
                 </div>
 
                 <h4>Prompt 3: Commit and Create PR</h4>
@@ -483,82 +725,80 @@
                 <div class="prompt-box">
                     <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
                     <pre>Please prepare my work for review:
-1. Stage all changes
-2. Create a descriptive commit message
-3. Push to the feature branch
-4. Create a pull request with:
-   - Title: "Fix #[NUMBER]: [Brief description]"
-   - Description of changes
-   - How it addresses the issue
-   - Testing performed</pre>
+- Stage all changes
+- Create a descriptive commit message
+- Push to the feature branch
+- Create a pull request with:
+  * Title: "Fix #[NUMBER]: [Brief description]"
+  * Description of changes
+  * How it addresses the issue
+  * Testing performed</pre>
                 </div>
 
                 <h3>Sample Implementation Workflows</h3>
 
-                <h4><span class="difficulty-badge beginner">🟢 Beginner</span> Path (Issue #1 or #3)</h4>
+                <h4><span class="difficulty-badge beginner">Beginner</span> Path (Issue #976 or #978)</h4>
 
-                <p><strong>Issue #1 - Card Back Design:</strong></p>
+                <p><strong>Issue #976 — Card Back Design:</strong></p>
                 <div class="prompt-box">
                     <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
                     <pre>Agent, let's add a red diamond to the card backs:
-1. Locate where card backs are rendered
-2. Add a red diamond (♦️) with proper styling
-3. Make it large and centered on the card back
-4. Test that it only appears on unflipped cards</pre>
+- Locate where card backs are rendered
+- Add a red diamond with proper styling
+- Make it large and centered on the card back
+- Test that it only appears on unflipped cards</pre>
                 </div>
 
-                <p><strong>Issue #3 - High Score:</strong></p>
+                <p><strong>Issue #978 — High Score:</strong></p>
                 <div class="prompt-box">
                     <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
                     <pre>Agent, implement high score tracking:
-1. Add state for best score (lowest moves)
-2. Use localStorage to persist between sessions
-3. Display "Best: X moves" in the UI
-4. Update only when current score beats the best
-5. Add a running total of games played</pre>
+- Add state for best score (lowest moves)
+- Use localStorage to persist between sessions
+- Display "Best: X moves" in the UI
+- Update only when current score beats the best
+- Add a running total of games played</pre>
                 </div>
 
-                <h4><span class="difficulty-badge intermediate">🟡 Intermediate</span> Path (Issue #2, #4, or #5)</h4>
+                <h4><span class="difficulty-badge intermediate">Intermediate</span> Path (Issue #979 or #980)</h4>
 
-                <p><strong>Issue #4 - Theme Selector:</strong></p>
+                <p><strong>Issue #979 — Theme Selector:</strong></p>
                 <div class="prompt-box">
                     <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
                     <pre>Agent, create a theme selector with these requirements:
-1. Add theme options: Animals, Emoji, and Flags
-2. Create arrays of matching symbols for each theme
-3. Add UI to select theme before game starts
-4. Update cards based on selected theme
-5. Example animals: 🐶🐱🐭🐹🐰🦊🐻🐼
-6. Example flags: 🇺🇸🇬🇧🇫🇷🇩🇪🇯🇵🇧🇷🇨🇦🇦🇺</pre>
+- Add theme options: Animals, Emoji, and Flags
+- Create arrays of matching symbols for each theme
+- Add UI to select theme before game starts
+- Update cards based on selected theme</pre>
                 </div>
 
-                <p><strong>Issue #5 - Timer Challenge:</strong></p>
+                <p><strong>Issue #980 — Timer Challenge:</strong></p>
                 <div class="prompt-box">
                     <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
                     <pre>Agent, implement the countdown timer feature:
-1. Create a 60-second countdown
-2. Display timer prominently (suggest top-right)
-3. Add lose detection at 0 seconds
-4. Show modal: "Time's Up! You ran out of time."
-5. Include "Play Again" button to restart
-6. Timer should pause when game is won</pre>
+- Create a 60-second countdown
+- Display timer prominently (suggest top-right)
+- Add lose detection at 0 seconds
+- Show modal: "Time's Up! You ran out of time."
+- Include "Play Again" button to restart
+- Timer should pause when game is won</pre>
                 </div>
 
-                <h4><span class="difficulty-badge advanced">🔴 Advanced</span> Path (Issue #2 or #6)</h4>
+                <h4><span class="difficulty-badge advanced">Advanced</span> Path (Issue #977)</h4>
 
-                <p><strong>Issue #2 - Multiple Difficulty Levels:</strong></p>
+                <p><strong>Issue #977 — Multiple Difficulty Levels:</strong></p>
                 <div class="prompt-box">
                     <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
                     <pre>Agent, implement difficulty selection:
-1. Add selection UI before game start
-2. Create three options:
-   - Easy: 4x4 grid (8 pairs)
-   - Medium: 6x6 grid (18 pairs)  
-   - Hard: 8x8 grid (32 pairs)
-3. Dynamically adjust grid CSS
-4. Scale card symbols appropriately
-5. Display current difficulty during gameplay
-6. Allow difficulty change after game completion</pre>
+- Add selection UI before game start
+- Create three options:
+  * Easy: 4x4 grid (8 pairs)
+  * Medium: 6x6 grid (18 pairs)
+  * Hard: 8x8 grid (32 pairs)
+- Dynamically adjust grid CSS
+- Scale card symbols appropriately
+- Display current difficulty during gameplay
+- Allow difficulty change after game completion</pre>
                 </div>
             </section>
 
@@ -578,39 +818,14 @@
 
                 <h4>Feature-Specific Tests:</h4>
 
-                <p><strong>Card Back (Issue #1):</strong></p>
+                <p><strong>Card Back — Issue #976:</strong></p>
                 <ul class="checklist">
                     <li>Diamond visible on all unflipped cards</li>
                     <li>Diamond disappears when card flipped</li>
                     <li>Diamond reappears if non-match</li>
                 </ul>
 
-                <p><strong>High Score (Issue #3):</strong></p>
-                <ul class="checklist">
-                    <li>Best score displays</li>
-                    <li>Updates only when beaten</li>
-                    <li>Persists after page refresh</li>
-                    <li>Games played counter increments</li>
-                </ul>
-
-                <p><strong>Theme Selector (Issue #4):</strong></p>
-                <ul class="checklist">
-                    <li>All themes selectable</li>
-                    <li>Cards update to match theme</li>
-                    <li>Themes have enough unique pairs</li>
-                    <li>Theme persists during game</li>
-                </ul>
-
-                <p><strong>Timer (Issue #5):</strong></p>
-                <ul class="checklist">
-                    <li>Starts at 60 seconds</li>
-                    <li>Counts down properly</li>
-                    <li>Shows lose modal at 0</li>
-                    <li>Pauses on win</li>
-                    <li>Resets with game</li>
-                </ul>
-
-                <p><strong>Difficulty (Issue #2/#6):</strong></p>
+                <p><strong>Difficulty Levels — Issue #977:</strong></p>
                 <ul class="checklist">
                     <li>All difficulty levels selectable</li>
                     <li>Grid adjusts properly</li>
@@ -618,12 +833,37 @@
                     <li>Cards remain clickable</li>
                     <li>Layout is responsive</li>
                 </ul>
+
+                <p><strong>High Score — Issue #978:</strong></p>
+                <ul class="checklist">
+                    <li>Best score displays</li>
+                    <li>Updates only when beaten</li>
+                    <li>Persists after page refresh</li>
+                    <li>Games played counter increments</li>
+                </ul>
+
+                <p><strong>Theme Selector — Issue #979:</strong></p>
+                <ul class="checklist">
+                    <li>All themes selectable</li>
+                    <li>Cards update to match theme</li>
+                    <li>Themes have enough unique pairs</li>
+                    <li>Theme persists during game</li>
+                </ul>
+
+                <p><strong>Timer — Issue #980:</strong></p>
+                <ul class="checklist">
+                    <li>Starts at 60 seconds</li>
+                    <li>Counts down properly</li>
+                    <li>Shows lose modal at 0</li>
+                    <li>Pauses on win</li>
+                    <li>Resets with game</li>
+                </ul>
             </section>
 
             <section id="part5">
                 <h2>Part 5: Agent Boundary Testing (10 minutes)</h2>
 
-                <p>In the prompt chat window, attempt to pull down an application from another repository instance (Bitbucket). Upon execution, the agent will report the request as blocked by Boundary.</p>
+                <p>Test the guardrails. In the prompt chat window, attempt to pull down an application from another repository instance (Bitbucket). The agent will report the request as blocked by Boundary.</p>
 
                 <div class="prompt-box">
                     <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
@@ -633,8 +873,6 @@
 
             <section id="troubleshooting">
                 <h2>Troubleshooting Quick Reference</h2>
-
-                <h3>Common Issues and Solutions</h3>
 
                 <h4>AI Assistant Not Responding:</h4>
                 <div class="prompt-box">
@@ -673,13 +911,13 @@ If issues persist, refresh the AI chat panel.</pre>
             </section>
 
             <section id="bonus">
-                <h2>Bonus Challenges (If Time Permits)</h2>
+                <h2>Bonus Challenges</h2>
 
                 <h3>Challenge A: Combine Features</h3>
-                <p>If you finish early, try combining two issues:</p>
+                <p>Finished early? Stack two issues in one branch:</p>
                 <div class="prompt-box">
                     <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
-                    <pre>Agent, I've completed Issue #[FIRST]. Now let's also implement Issue #[SECOND] 
+                    <pre>Agent, I've completed Issue #[FIRST]. Now let's also implement Issue #[SECOND]
 in the same branch. Make sure both features work together seamlessly.</pre>
                 </div>
 
@@ -697,7 +935,7 @@ Please implement it following the same quality standards.</pre>
                     <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
                     <pre>Agent, please review this PR: [URL]
 1. Check for code quality
-2. Verify it meets issue requirements  
+2. Verify it meets issue requirements
 3. Suggest any improvements
 4. Leave constructive comments</pre>
                 </div>
@@ -707,64 +945,62 @@ Please implement it following the same quality standards.</pre>
                 <h2>Key Takeaways</h2>
                 <p>By the end of this workshop, you will have:</p>
                 <ul>
-                    <li>✅ Experienced Coder's agent boundaries in action</li>
-                    <li>✅ Used AI assistance for real development tasks</li>
-                    <li>✅ Created a feature branch and PR</li>
-                    <li>✅ Understood enterprise-secure AI development workflows</li>
+                    <li>Experienced Coder's agent boundaries in action</li>
+                    <li>Used AI assistance for real development tasks</li>
+                    <li>Created a feature branch and PR</li>
+                    <li>Understood enterprise-secure AI development workflows</li>
                 </ul>
             </section>
 
             <section id="resources">
                 <h2>Resources & Next Steps</h2>
                 <ul>
-                    <li>Try Coder Open Source: <a href="https://github.com/orgs/coder" target="_blank">https://github.com/orgs/coder</a></li>
-                    <li>Coder Documentation: <a href="https://coder.com/docs" target="_blank">https://coder.com/docs</a></li>
-                    <li>Agent Boundaries Guide: <a href="https://coder.com/docs/agents/boundaries" target="_blank">https://coder.com/docs/agents/boundaries</a></li>
-                    <li>Workshop Repository: <a href="https://github.com/coder-contrib/memory-card-ai-demo" target="_blank">https://github.com/coder-contrib/memory-card-ai-demo</a></li>
+                    <li>Try Coder Open Source: <a href="https://github.com/orgs/coder" target="_blank">github.com/orgs/coder</a></li>
+                    <li>Coder Documentation: <a href="https://coder.com/docs" target="_blank">coder.com/docs</a></li>
+                    <li>Agent Boundaries Guide: <a href="https://coder.com/docs/agents/boundaries" target="_blank">coder.com/docs/agents/boundaries</a></li>
+                    <li>Workshop Repository: <a href="https://github.com/coder-contrib/memory-card-ai-demo" target="_blank">github.com/coder-contrib/memory-card-ai-demo</a></li>
                 </ul>
             </section>
-            <div style="text-align: center; padding: 40px 0; border-top: 2px solid #eee; margin-top: 40px;">
-                <h3>Thank you for participating! 🚀</h3>
-                <p style="font-size: 1.1em; color: #666;">Remember, the AI agents are here to augment your development, not replace your creativity. Happy coding!</p>
+
+            <div class="footer">
+                <h3>Thank you for participating!</h3>
+                <p>Code with clarity. Scale with certainty.</p>
             </div>
         </div>
     </div>
 
     <script>
-        function copyPrompt(button) {
-            const promptBox = button.parentElement;
-            const pre = promptBox.querySelector('pre');
-            const text = pre.textContent;
+        function toggleTheme() {
+            const html = document.documentElement;
+            const current = html.getAttribute('data-theme');
+            html.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+        }
 
-            navigator.clipboard.writeText(text).then(() => {
-                const originalText = button.textContent;
-                button.textContent = '✓ Copied!';
+        function copyPrompt(button) {
+            const pre = button.parentElement.querySelector('pre');
+            navigator.clipboard.writeText(pre.textContent).then(() => {
+                const orig = button.textContent;
+                button.textContent = 'Copied!';
                 button.classList.add('copied');
-                
-                setTimeout(() => {
-                    button.textContent = originalText;
-                    button.classList.remove('copied');
-                }, 2000);
-            }).catch(err => {
-                console.error('Failed to copy:', err);
+                setTimeout(() => { button.textContent = orig; button.classList.remove('copied'); }, 2000);
+            }).catch(() => {
                 button.textContent = 'Failed';
-                setTimeout(() => {
-                    button.textContent = 'Copy';
-                }, 2000);
+                setTimeout(() => { button.textContent = 'Copy'; }, 2000);
             });
         }
 
-        // Smooth scrolling for anchor links
+        function switchMethod(method, btn) {
+            document.querySelectorAll('.method-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.method-content').forEach(c => c.classList.remove('active'));
+            document.getElementById('method-' + method).classList.add('active');
+            btn.classList.add('active');
+        }
+
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
     </script>
