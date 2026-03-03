@@ -152,27 +152,12 @@
         }
 
         .header-logo {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            font-size: 1.75em;
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            color: var(--text-primary);
-            display: flex;
-            align-items: center;
-            gap: 2px;
-            text-decoration: none;
-            transition: color 0.3s;
-            line-height: 1;
+            height: 26px;
+            width: auto;
         }
-        .header-logo .blink-cursor {
-            display: inline-block;
-            width: 0.18em;
-            height: 0.85em;
-            background: var(--text-primary);
-            border-radius: 2px;
-            margin-left: 1px;
-            transition: background 0.3s;
-        }
+        .logo-dark, .logo-light { display: none; }
+        [data-theme="dark"] .logo-dark { display: block; }
+        [data-theme="light"] .logo-light { display: block; }
 
         /* THEME TOGGLE */
         .theme-toggle {
