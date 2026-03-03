@@ -155,11 +155,9 @@
             height: 30px;
             width: auto;
         }
-        .header-logo text,
-        .header-logo rect {
-            fill: var(--text-primary);
-            transition: fill 0.3s;
-        }
+        .logo-dark, .logo-light { display: none; }
+        [data-theme="dark"] .logo-dark { display: block; }
+        [data-theme="light"] .logo-light { display: block; }
 
         /* THEME TOGGLE */
         .theme-toggle {
