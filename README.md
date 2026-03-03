@@ -8,7 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Brand colors */
             --white: #ffffff;
             --black: #090B0B;
             --magenta: #F08DFF;
@@ -29,7 +28,6 @@
             --smoke: #2F2D33;
         }
 
-        /* DARK THEME (default — developer focus) */
         [data-theme="dark"] {
             --bg-page: var(--black);
             --bg-container: var(--cinder);
@@ -71,7 +69,6 @@
             --toggle-knob: var(--purple);
         }
 
-        /* LIGHT THEME (enterprise focus) */
         [data-theme="light"] {
             --bg-page: var(--shell);
             --bg-container: var(--white);
@@ -135,7 +132,6 @@
             transition: background 0.3s, border-color 0.3s;
         }
 
-        /* HEADER */
         .header {
             background: var(--bg-header);
             padding: 48px 30px 40px;
@@ -155,26 +151,13 @@
             height: 26px;
             width: auto;
         }
-        .logo-dark, .logo-light { display: none; }
-        [data-theme="dark"] .logo-dark { display: block; }
-        [data-theme="light"] .logo-light { display: block; }
 
-        /* THEME TOGGLE */
         .theme-toggle {
             display: flex;
             align-items: center;
             gap: 8px;
             cursor: pointer;
             user-select: none;
-        }
-
-        .theme-toggle-label {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.75em;
-            font-weight: 600;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
         }
 
         .toggle-track {
@@ -199,10 +182,7 @@
 
         [data-theme="light"] .toggle-knob { transform: translateX(20px); }
 
-        .toggle-icon {
-            font-size: 14px;
-            line-height: 1;
-        }
+        .toggle-icon { font-size: 14px; line-height: 1; }
 
         .header h1 {
             font-size: 2.5em;
@@ -218,7 +198,6 @@
             font-weight: 500;
         }
 
-        /* CONTENT */
         .content { padding: 40px 30px; }
 
         h2 {
@@ -253,7 +232,6 @@
         em { color: var(--text-muted); }
         ul, ol { margin-left: 30px; margin-bottom: 20px; }
 
-        /* PROMPT BOXES */
         .prompt-box {
             background: var(--bg-surface);
             border-left: 3px solid var(--border-accent);
@@ -296,7 +274,6 @@
         .copy-btn:hover { background: var(--btn-hover); }
         .copy-btn.copied { background: var(--btn-copied-bg); color: var(--btn-copied-text); }
 
-        /* CALLOUT BOXES */
         .info-box {
             background: var(--info-bg);
             border-left: 3px solid var(--info-border);
@@ -326,13 +303,11 @@
             color: var(--warning-text);
         }
 
-        /* TABLES */
         table { width: 100%; border-collapse: collapse; margin: 20px 0; }
         th, td { border: 1px solid var(--border-main); padding: 12px 16px; text-align: left; color: var(--text-body); }
         th { background: var(--table-header-bg); color: #fff; font-weight: 600; font-size: 0.95em; }
         td { background: var(--table-cell-bg); }
 
-        /* BADGES */
         .difficulty-badge {
             display: inline-block;
             padding: 4px 14px;
@@ -346,16 +321,13 @@
         .intermediate { background: var(--badge-intermediate-bg); color: var(--badge-intermediate-text); }
         .advanced { background: var(--badge-advanced-bg); color: var(--badge-advanced-text); }
 
-        /* CHECKLISTS */
         .checklist { list-style: none; margin-left: 0; }
         .checklist li { padding: 6px 0 6px 32px; position: relative; color: var(--text-body); }
         .checklist li:before { content: "\2610"; position: absolute; left: 0; font-size: 1.2em; color: var(--heading-primary); }
 
-        /* LINKS */
         a { color: var(--link-color); text-decoration: none; font-weight: 500; transition: color 0.2s; }
         a:hover { text-decoration: underline; color: var(--link-hover); }
 
-        /* TOC */
         .nav-toc {
             background: var(--bg-surface);
             padding: 24px;
@@ -369,7 +341,6 @@
         .nav-toc a { color: var(--text-muted); font-size: 0.95em; }
         .nav-toc a:hover { color: var(--link-hover); }
 
-        /* METHOD TABS */
         .method-tabs { display: flex; gap: 0; margin: 24px 0 0 0; border-bottom: 2px solid var(--border-main); }
         .method-tab {
             padding: 12px 24px;
@@ -443,8 +414,7 @@
     <div class="container">
         <div class="header">
             <div class="header-top-bar">
-                <!-- Official Coder logo SVG from brand guide (coder.com/brand) -->
-                <img src="https://coder.com/brand/images/logo.svg" alt="Coder" class="header-logo">
+                <img id="coder-logo" src="Logo-white.png" alt="Coder" class="header-logo">
 
                 <div class="theme-toggle" onclick="toggleTheme()">
                     <span class="toggle-icon">&#9790;</span>
@@ -501,7 +471,6 @@
                     <button class="method-tab" onclick="switchMethod('b', this)">Method B: GitHub Issue</button>
                 </div>
 
-                <!-- METHOD A -->
                 <div id="method-a" class="method-content active">
                     <span class="method-label label-a">Method A</span>
                     <h3>Launch from the Coder Dashboard</h3>
@@ -554,7 +523,6 @@
                     <p>Select the <strong>"Preview App"</strong> tab to view and start playing the Memory Card Game.</p>
                 </div>
 
-                <!-- METHOD B -->
                 <div id="method-b" class="method-content">
                     <span class="method-label label-b">Method B</span>
                     <h3>Launch from a GitHub Issue</h3>
@@ -971,35 +939,42 @@ Please implement it following the same quality standards.</pre>
 
     <script>
         function toggleTheme() {
-            const html = document.documentElement;
-            const current = html.getAttribute('data-theme');
-            html.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+            var html = document.documentElement;
+            var current = html.getAttribute('data-theme');
+            var next = current === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', next);
+            var logo = document.getElementById('coder-logo');
+            if (logo) {
+                logo.src = next === 'dark' ? 'Logo-white.png' : 'Logo-black.png';
+            }
         }
 
         function copyPrompt(button) {
-            const pre = button.parentElement.querySelector('pre');
-            navigator.clipboard.writeText(pre.textContent).then(() => {
-                const orig = button.textContent;
+            var pre = button.parentElement.querySelector('pre');
+            navigator.clipboard.writeText(pre.textContent).then(function() {
+                var orig = button.textContent;
                 button.textContent = 'Copied!';
                 button.classList.add('copied');
-                setTimeout(() => { button.textContent = orig; button.classList.remove('copied'); }, 2000);
-            }).catch(() => {
+                setTimeout(function() { button.textContent = orig; button.classList.remove('copied'); }, 2000);
+            }).catch(function() {
                 button.textContent = 'Failed';
-                setTimeout(() => { button.textContent = 'Copy'; }, 2000);
+                setTimeout(function() { button.textContent = 'Copy'; }, 2000);
             });
         }
 
         function switchMethod(method, btn) {
-            document.querySelectorAll('.method-tab').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.method-content').forEach(c => c.classList.remove('active'));
+            var tabs = document.querySelectorAll('.method-tab');
+            var contents = document.querySelectorAll('.method-content');
+            for (var i = 0; i < tabs.length; i++) { tabs[i].classList.remove('active'); }
+            for (var i = 0; i < contents.length; i++) { contents[i].classList.remove('active'); }
             document.getElementById('method-' + method).classList.add('active');
             btn.classList.add('active');
         }
 
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+                var target = document.querySelector(this.getAttribute('href'));
                 if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
