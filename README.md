@@ -150,7 +150,10 @@
         .header-logo {
             height: 26px;
             width: auto;
+            transition: filter 0.3s;
         }
+        [data-theme="dark"] .header-logo { filter: invert(1); }
+        [data-theme="light"] .header-logo { filter: none; }
 
         .theme-toggle {
             display: flex;
@@ -414,7 +417,7 @@
     <div class="container">
         <div class="header">
             <div class="header-top-bar">
-                <img id="coder-logo" src="Logo-white.png" alt="Coder" class="header-logo">
+                <img id="coder-logo" src="Logo-black.png" alt="Coder" class="header-logo">
 
                 <div class="theme-toggle" onclick="toggleTheme()">
                     <span class="toggle-icon">&#9790;</span>
@@ -943,10 +946,6 @@ Please implement it following the same quality standards.</pre>
             var current = html.getAttribute('data-theme');
             var next = current === 'dark' ? 'light' : 'dark';
             html.setAttribute('data-theme', next);
-            var logo = document.getElementById('coder-logo');
-            if (logo) {
-                logo.src = next === 'dark' ? 'Logo-white.png' : 'Logo-black.png';
-            }
         }
 
         function copyPrompt(button) {
